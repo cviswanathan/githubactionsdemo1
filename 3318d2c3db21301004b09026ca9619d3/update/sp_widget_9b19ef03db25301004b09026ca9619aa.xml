@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[api.controller=function() {  /* widget controller */  var c = this;};]]></client_script>
+        <controller_as>c</controller_as>
+        <css>table,th{
+
+border: 2px solid black;
+}
+
+td,tr{
+
+    border: 1px solid black;
+    }
+
+
+tr:hover{
+
+    background-color: lightskyblue;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>demonew</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>demonew</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+  /* populate the 'data' object */
+  /* e.g., data.table = $sp.getValue('table'); */
+
+data.array = [];
+
+var grUser = new GlideRecord('sys_user');
+grUser.addEncodedQuery('active',true);
+grUser.query();
+while(grUser.next()){
+
+var user = {};
+
+user.name = grUser.getValue('user_name');
+user.email = grUser.getValue('email');
+user.department = grUser.getDisplayValue('department');
+
+
+data.array.push(user);
+
+
+}
+
+
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-07-29 13:46:22</sys_created_on>
+        <sys_id>9b19ef03db25301004b09026ca9619aa</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>demonew</sys_name>
+        <sys_package display_value="githubactionsdemo1" source="3318d2c3db21301004b09026ca9619d3">3318d2c3db21301004b09026ca9619d3</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="githubactionsdemo1">3318d2c3db21301004b09026ca9619d3</sys_scope>
+        <sys_update_name>sp_widget_9b19ef03db25301004b09026ca9619aa</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-07-29 14:08:21</sys_updated_on>
+        <template><![CDATA[<div>
+<!-- your widget template -->
+<table>
+<tr> 
+ <th> &nbsp User Name &nbsp </th>
+ <th> &nbsp Email &nbsp </th>
+ <th> &nbsp Department &nbsp </th>
+
+
+</tr>
+
+
+
+
+<tr ng-repeat = "user in data.array">
+    
+    <td> &nbsp{{user.name}} &nbsp  </td>
+    <td> &nbsp{{user.email}}  &nbsp </td>
+    <td> &nbsp {{user.department}}  &nbsp </td>
+
+
+
+
+</tr>
+
+
+</table>
+
+
+
+
+</div>]]></template>
+    </sp_widget>
+</record_update>
